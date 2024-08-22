@@ -3529,6 +3529,9 @@ LRESULT MsgThemeChanged(HWND hwnd, WPARAM wParam,LPARAM lParam)
         UpdateUI(hwnd);
     }
 
+    PostMessage(hwnd, WM_NCACTIVATE, FALSE, -1); // (!)
+    PostMessage(hwnd, WM_NCACTIVATE, TRUE, 0);
+
     UpdateWindowEx(hwnd);
 
     return FALSE;

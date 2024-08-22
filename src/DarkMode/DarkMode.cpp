@@ -362,7 +362,7 @@ extern "C" void SetDarkMode(bool bEnableDarkMode)
 
             RefreshImmersiveColorPolicyState();
 
-            s_bDarkModeSupported = ShouldAppsUseDarkMode() && !IsHighContrast(); // (!) after RefreshImmersiveColorPolicyState()
+            // s_bDarkModeSupported = ShouldAppsUseDarkMode() && !IsHighContrast(); // (!) after RefreshImmersiveColorPolicyState()
 
             FlushMenuThemes();
 
