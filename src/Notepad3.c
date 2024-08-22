@@ -171,6 +171,8 @@ static int       s_cxEditFrame = 0;
 static int       s_cyEditFrame = 0;
 static bool      s_bUndoRedoScroll = false;
 
+static ULONG     s_iEscDbTime = 0;
+
 // for tiny expression calculation
 static double   s_dExpression = 0.0;
 static te_int_t s_iExprError  = -1;
@@ -6820,7 +6822,13 @@ LRESULT MsgCommand(HWND hwnd, UINT umsg, WPARAM wParam, LPARAM lParam)
                 break;
 
             case 2:
-                CloseApplication();
+                {
+                    DWORD curTime = GetTickCount();
+                    if (curTime - s_iEscDbTime < 400)
+                        CloseApplication();
+                    else
+                        s_iEscDbTime = curTime;
+                }
                 break;
 
             default:
