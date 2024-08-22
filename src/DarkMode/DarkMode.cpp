@@ -219,7 +219,7 @@ extern "C" bool IsHighContrast()
 // ============================================================================
 
 
-static bool s_bDarkModeSupported = false;
+static bool s_bDarkModeSupported = true;
 
 extern "C" bool IsDarkModeSupported()
 {
@@ -310,7 +310,7 @@ extern "C" void AllowDarkModeForAppEx(bool allow)
         if (buildNum < 18362) {
             AllowDarkModeForApp(allow);
         } else {
-            reinterpret_cast<fnSetPreferredAppMode>(AllowDarkModeForApp)(allow ? PreferredAppMode::AllowDark : PreferredAppMode::Default);
+            reinterpret_cast<fnSetPreferredAppMode>(AllowDarkModeForApp)(allow ? PreferredAppMode::ForceDark : PreferredAppMode::Default);
         }
     }
 }
@@ -358,7 +358,7 @@ extern "C" void SetDarkMode(bool bEnableDarkMode)
         // undocumented function addresses are only valid for this WinVer build numbers
         if (CheckLoadLibrary(major, minor, buildNumber)) {
 
-            AllowDarkModeForApp(s_UserSetDarkMode);
+            AllowDarkModeForAppEx(s_UserSetDarkMode);
 
             RefreshImmersiveColorPolicyState();
 
