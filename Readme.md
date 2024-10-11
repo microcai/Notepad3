@@ -4,6 +4,8 @@
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/donate/?hosted_button_id=7UGGCSDUZJPFE)
 
+![image](https://github.com/user-attachments/assets/820150eb-fa76-4886-8184-932cbb111c79)
+
 Notepad3 is a fast and light-weight Scintilla-based text editor with syntax highlighting. It has a small memory footprint, but is powerful enough to handle most programming jobs. [Download Notepad3 here](https://www.rizonesoft.com/downloads/notepad3).
 
 > *Notepad3 is based on code from Florian Balmer's Notepad2 and XhmikosR's Notepad2-mod. MiniPath is based on code from Florian Balmer's metapath.*
