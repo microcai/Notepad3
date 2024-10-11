@@ -36,7 +36,7 @@ jobs:
 
     - name: zip the result
       working-directory: ${{ github.workspace }}\Bin\Release_x64_v143
-      run: 7z a notepad3.zip *.exe lng
+      run: 7z a notepad3.zip *.exe lng/mplng.dll lng/np3lng.dll lng/zh-CN
 
     - name: upload Release
       uses: softprops/action-gh-release@master
