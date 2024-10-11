@@ -5939,11 +5939,23 @@ static LPCWSTR _EditGetFindStrg(HWND hwnd, const LPEDITFINDREPLACE lpefr, bool b
         hfind = StrgCreate(NULL);
     }
 
+    DocPos iSelLen = SciCall_GetSelectionEnd() - SciCall_GetSelectionStart();
+    if (iSelLen != 0) {
+        char* pszFind = (char*)AllocMem(iSelLen + 1, HEAP_ZERO_MEMORY);
+        iSelLen = SciCall_GetSelText(pszFind);
+        if (iSelLen != 0) {
+            StrgResetFromUTF8(hfind, pszFind);
+        }
+        FreeMem(pszFind);
+    }
+
     // 1st: try last used pattern
-    if (StrgIsEmpty(lpefr->chFindPattern) && bFillEmpty) {
-        StrgReset(hfind, GetFindPattern());
-    } else {
-        StrgReset(hfind, StrgGet(lpefr->chFindPattern));
+    if (StrgIsEmpty(hfind)) {
+        if (StrgIsEmpty(lpefr->chFindPattern) && bFillEmpty) {
+            StrgReset(hfind, GetFindPattern());
+        } else {
+            StrgReset(hfind, StrgGet(lpefr->chFindPattern));
+        }
     }
 
     // 2nd: try get clipboard content
