@@ -13,11 +13,15 @@ jobs:
         build_type: [Release]
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.2.1
+      with:
+        fetch-depth: 0
 
     - name: Prepare Version
       shell: cmd
-      run: ./Version.cmd
+      run: |
+        git branch head
+        ./Version.cmd
     - name: Enable Developer Command Prompt
       if: startsWith(runner.os, 'Windows')
       uses: ilammy/msvc-dev-cmd@v1.13.0
